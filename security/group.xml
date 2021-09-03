@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+        <record model="ir.module.category" id="module_ostock_category">
+            <field name="name">ostock</field>
+            <field name="description">Catégorie d'utilisateur</field>
+            <field name="sequence">17</field>
+        </record>
+
+        <record id="group_ostock_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="module_ostock_category"/>
+        </record>
+
+        <record id="group_ostock_gerant" model="res.groups">
+            <field name="name">gerant</field>
+            <field name="category_id" ref="module_ostock_category"/>
+        </record>
+
+       
+
+</data>
+</openerp>

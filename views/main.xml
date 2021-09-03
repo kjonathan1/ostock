@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Entree de stovk -->
+    <record id="ostockentree_view_form" model="ir.ui.view">
+        <field name="name">ostock.entree.form</field>
+        <field name="model">ostock.entree</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <group>
+                        <field name="name"/>
+                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ostockentree_tree_view" model="ir.ui.view">
+            <field name="name">ostock.entree.tree</field>
+            <field name="model">ostock.entree</field>
+            <field name="arch" type="xml">
+                <tree string="Entree">
+                    <field name="name"/>
+                    
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ostockentree">
+        <field name="name">Entree</field>
+        <field name="res_model">ostock.entree</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ostockentree_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle entree</p>
+        </field>
+    </record>
+
+   
+
+
+
+   
+
+</odoo>

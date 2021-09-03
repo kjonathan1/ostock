@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+ostockentree_admin,ostock.entree.admin,model_ostock_entree,group_ostock_admin,1,1,1,1
+ostockentree_gerant,ostock.entree.gerant,model_ostock_entree,group_ostock_gerant,1,1,1,0
+
+
+
+
+
+
+
+
+ostockarticle_admin,ostock.article.admin,model_ostock_article,group_ostock_admin,1,1,1,1
+ostockarticle_gerant,ostock.article.gerant,model_ostock_article,group_ostock_gerant,1,1,1,0

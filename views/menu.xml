@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menus  -->
+        <menuitem id="ostock" name="STOCK" sequence="150" web_icon="ostock,static/description/icon.png"/>
+            <menuitem id="entree" name="Entree" parent="ostock"  sequence="5" action="action_ostockentree"/>
+           
+
+     </data>
+
+</odoo>
