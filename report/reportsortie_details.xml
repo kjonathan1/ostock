@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/ovitas/static/src/css/style.css"/>
+		</xpath>
+    </template>
+
+    <template id="sortie_details">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="5"/>
+            <t t-set="data_report_margin_bottom" t-value="4"/>
+            <t t-set="data_report_header_spacing" t-value="2"/>
+            <t t-set="data_report_dpi" t-value="110"/>
+
+            <t t-foreach="docs" t-as="o">
+				<t t-set="o" t-value="o.with_context(lang=user.lang)" />
+                <t t-call="web.basic_layout">
+                    <div class="page container">
+                        <div>
+                            <img src="/ovitas/static/src/img/entete_recu2.png"  height="120px" width="100%"/>
+                        </div>
+                       
+                        <!-- <div>
+                            <strong><center><h3>VTE. DETAILS N° <span t-esc="o.name" /></h3></center></strong>
+                        </div> -->
+                        <br/> 
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 15%"> </td>
+                                <td style="width: 45%">
+                                    <strong><h1>Bon de Livraison</h1></strong> <br/>
+                                    <h3><span><strong>Client: </strong></span><span t-esc="o.client.name" /></h3> <br/>
+                                    <h3><span><strong>Télephone: </strong></span><span t-esc="o.client.telephone" /></h3>
+                                </td>
+                                <td style="width: 40%">
+                                    <strong><center><h3>Date: <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/><br/></h3></center></strong> <br/>
+                                    <strong><center><h3>VITAS NONSSIN-<span t-esc="o.name" /></h3></center></strong> <br/>
+                                    
+                                </td>
+                                <!-- <td style="width: 50%">
+                                    <span><strong>Date: </strong></span><span t-field="o.date"/><br/>
+                                    <span><strong>Etat: </strong></span><span t-field="o.state"/>
+                                </td> -->
+                            </tr>
+                        </table>
+                        <br/> 
+                        <!-- <table width="100%">
+                            <tr>
+                                <td style="width: 50%">
+                                    <span><strong>Client: </strong></span><span t-esc="o.client.name" /> <br/>
+                                    <span><strong>Télephone: </strong></span><span t-esc="o.client.telephone" />
+                                </td>
+                                <td style="width: 50%">
+                                    <span><strong>Date: </strong></span><span t-field="o.date"/><br/>
+                                    <span><strong>Etat: </strong></span><span t-field="o.state"/>
+                                </td>
+                            </tr>
+                        </table> -->
+                        <!-- <br/> -->
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>Désignation</td>
+                                    <td align="center">L x H</td>
+                                    <td align="center">Nb</td>
+                                    <td align="center">Quantité</td>
+                                    <td align="right">Prix unitaire</td>
+                                    <td align="right">Montant</td>
+                                </tr>
+                                <t t-foreach="o.lignedetailsortie" t-as="l">
+                                    <tr>
+                                        <td><span t-esc="l.idarticle.name" /> </td>
+                                        <td align="center"><span t-esc="'{:,.2f}'.format(l.longueur).replace(',', ' ').replace('.', ',')"/> x <span t-esc="'{:,.2f}'.format(l.hauteur).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="center"><span t-esc="'{:,.2f}'.format(l.piece).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="center"><span t-esc="'{:,.2f}'.format(l.quantitesortie).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.pu-l.remise).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.montant).replace(',', ' ').replace('.', ',')"/></td>                    
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="4"><strong>Total Net</strong></td>
+                                    <td colspan="2" align="right"><strong><span t-esc="'{:,.0f}'.format(o.montantnet).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                                </tr>
+                                <t t-if="o.remise>0">
+                                    <tr>
+                                        <td colspan="4"><strong>Rémise</strong></td>
+                                        <td colspan="2" align="right"><span t-esc="'{:,.0f}'.format(o.remise).replace(',', ' ').replace('.', ',')"/></td>                    
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="4" ><strong>TOTAL GENERAL</strong></td>
+                                    <td colspan="2" align="right"><strong><span t-esc="'{:,.0f}'.format(o.montant).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td ><strong>Net payé</strong></td>
+                                    <td ><strong>Reste à payé</strong></td>
+                                </tr>
+                                 <tr>
+                                    <td align="right"><strong><span t-esc="'{:,.0f}'.format(o.montant_paye).replace(',', ' ').replace('.', ',')"/></strong></td> 
+                                    <td align="right"><strong><span t-esc="'{:,.0f}'.format(o.reste).replace(',', ' ').replace('.', ',')"/></strong></td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                        -->
+                        <br/>
+                        <div>Arrêté, le présent reçu à la somme de  <span t-esc="user.company_id.compute_amount_text(o.montant)" /> (<span t-esc="'{:,.0f}'.format(o.montant).replace(',', ' ').replace('.', ',')"/>) FCFA</div>
+                        <br/>
+                       
+                       
+                        <table width="100%">
+                            <tr>
+                                <td align="center" style="width: 50%"><strong></strong> <br/></td>
+                                <td align="center" style="width: 50%">
+                                    <strong><u>LA CAISSE</u></strong>
+                                    <br/><br/><br/>
+                                    <span t-esc="user.name"/><br/>
+                                    <strong></strong><br/>
+                                    
+                                   
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                            <div class="row text-center">
+                                <div class="col col-12 text-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Page:</li>
+                                        <li class="list-inline-item">
+                                            <span class="page"/>
+                                        </li>
+                                        <li class="list-inline-item">/</li>
+                                        <li class="list-inline-item">
+                                            <span class="topage"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+    <report 
+        id="reportentree"
+        model="o.evaluation"
+        string="Reçu caisse A5"
+        report_type="qweb-pdf"            
+        name="clinic.recucaisse"
+        file="clinic.recu_de_caisse"
+		paperformat="clinic.sheet_a5"
+    />
 
-    
+    <report 
+        id="reportrecucaisseduplicata"
+        model="clinic.evaluation"
+        string="Reçu caisse Duplicata A5"
+        report_type="qweb-pdf"            
+        name="clinic.recucaisseduplicata"
+        file="clinic.recu_de_caisse_duplicata"
+		paperformat="clinic.sheet_a5"
+    />
+
+    <report 
+        id="reportfactureass"
+        model="clinic.factureass"
+        string="Factre Assurance"
+        report_type="qweb-pdf"            
+        name="clinic.factureass"
+        file="clinic.facture_assurance"
+    />
 </odoo>

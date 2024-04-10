@@ -2,14 +2,60 @@
 <odoo>
     <data noupdate="1">
 
-        <!-- Sequences for ostock.entree -->
-        <record id="seq_patient" model="ir.sequence">
-            <field name="name">Entree</field>
-            <field name="code">ostock.entree</field>
-            <field name="prefix">ENT</field>
-            <field name="padding">5</field>
+        <!-- Sequences for ovitas.entree -->
+        <record id="seq_entree" model="ir.sequence">
+            <field name="name">APPRO</field>
+            <field name="code">ovitas.entree</field>
+            <field name="prefix">AP</field>
+            <field name="padding">7</field>
             <field name="company_id" eval="False"/>
         </record>
+        
+
+        <!-- Sequences for ovitas.sortie -->
+        <record id="seq_sortie" model="ir.sequence">
+            <field name="name">VENTE</field>
+            <field name="code">ovitas.sortie</field>
+            <field name="prefix">VT-</field>
+            <field name="padding">7</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for ovitas.sortie -->
+        <record id="seq_sortie_details" model="ir.sequence">
+            <field name="name">VENTE DETAILS</field>
+            <field name="code">ovitas.sortie.details</field>
+            <field name="prefix">VT-DTS</field>
+            <field name="padding">7</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for ovitas.sortie -->
+        <record id="seq_sortie_grossiste" model="ir.sequence">
+            <field name="name">VENTE GROSSISTE</field>
+            <field name="code">ovitas.sortie.grossiste</field>
+            <field name="prefix">VT-GROS</field>
+            <field name="padding">7</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for ovitas.sortie -->
+        <record id="seq_sortie_annexe" model="ir.sequence">
+            <field name="name">VENTE ANNEXE</field>
+            <field name="code">ovitas.sortie.annexe</field>
+            <field name="prefix">VT-ANX</field>
+            <field name="padding">7</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+         <!-- Sequences for ovitas.transfert -->
+        <!-- <record id="seq_transfert" model="ir.sequence">
+            <field name="name">Transfert</field>
+            <field name="code">ovitas.transfert</field>
+            <field name="prefix">TRANSF</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
 
        
     </data>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/ovitas/static/src/css/style.css"/>
+		</xpath>
+    </template>
+
+    <template id="bilanventeannexe">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="5"/>
+            <t t-set="data_report_margin_bottom" t-value="4"/>
+            <t t-set="data_report_header_spacing" t-value="2"/>
+            <t t-set="data_report_dpi" t-value="110"/>
+
+            <t t-call="web.basic_layout">
+                <div class="page container">
+                    <div>
+                        <img src="/ovitas/static/src/img/entete_fact.png"  height="170px" width="100%"/>
+                    </div>
+                       
+                    <div class="card">
+                        <div class="card-header">
+                            <strong><center><h4>BILAN VTE. ANNEXES DU <span t-esc="data['debut']" /> AU <span t-esc="data['fin']" /></h4></center></strong>
+                        </div>
+                    </div>                        
+                    <br/> 
+                     <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Quittance</th>
+                                <th>Date</th>
+                                <th>Client</th>
+                                <th align="right">Montant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="resultats" t-as="l">
+                                <tr>
+                                    <td><span t-esc="l['name']" /></td>
+                                    <td><span t-esc="l['date']" /></td>
+                                    <td><span t-esc="l['client']" /></td>
+                                    <td align="right"><span t-esc="'{:,.0f}'.format(l['montant']).replace(',', ' ').replace('.', ',')"/></td>                    
+                                </tr>
+                            </t>
+                            <tr>
+                                <td colspan="3"><strong>Total</strong></td>
+                                <td align="right"><strong><span t-esc="'{:,.0f}'.format(montant_total).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                            </tr>
+                        </tbody>
+                    </table>
+                     <br/>
+                    <div>Arrêter le présent bilan à la somme de  <span t-esc="user.company_id.compute_amount_text(montant_total)" /> (<span t-esc="'{:,.0f}'.format(montant_total).replace(',', ' ').replace('.', ',')"/>) FCFA</div>
+                    <br/>
+                       
+                       
+                    <table width="100%">
+                            <tr>
+                                <td align="center" style="width: 50%"><strong></strong> <br/></td>
+                                <td align="center" style="width: 50%">
+                                    <strong><u>LA CAISSE</u></strong>
+                                    <br/><br/><br/>
+                                    <span t-esc="user.name"/><br/>
+                                    <strong></strong><br/>
+                                    <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/><br/>
+                                   
+                                </td>
+                            </tr>
+                    </table>
+
+                    <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                            <div class="row text-center">
+                                <div class="col col-12 text-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Page:</li>
+                                        <li class="list-inline-item">
+                                            <span class="page"/>
+                                        </li>
+                                        <li class="list-inline-item">/</li>
+                                        <li class="list-inline-item">
+                                            <span class="topage"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <record id="paysage" model="report.paperformat">
+            <field name="name">A4 Paysage</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
+            <field name="dpi">80</field>
+        </record>
+
+        <record id="sheet_a5" model="report.paperformat">
+            <field name="name">A5 Format</field>
+            <field name="default" eval="True"/>        
+            <field name="format">custom</field>
+            <field name="page_height">210</field>
+            <field name="page_width">148</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">3</field> 
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">3</field>
+            <field name="dpi">130</field>
+        </record>
+
+        <!-- <record id="stock_id" model="ir.actions.report">
+            <field name="name">Mouvement de stock</field>
+            <field name="model">ovitas.mouvements</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ovitas.stock</field>
+            <field name="report_file">ovitas.stock</field>
+            <field name="binding_model_id" ref="ovitas.paysage"/>
+            <field name="binding_type">report</field>
+        </record> -->
+
+         <!-- <record id="sortie_id" model="ir.actions.report">
+            <field name="name">Reçu de caisse</field>
+            <field name="model">ovitas.sortie</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ovitas.sortie</field>
+            <field name="report_file">ovitas.sortie</field>
+            <field name="binding_model_id" ref="ovitas.sortie"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat">ovitas.sheet_a5</field>
+        </record> -->
+
+        <report 
+            id="stock_id"
+            model="ovitas.mouvements"
+            string="Mouvement de stock"
+            report_type="qweb-pdf"
+            name="ovitas.stock"
+            file="ovitas.stock"
+            paperformat="ovitas.paysage"
+        />
+
+        <report 
+            id="entree_id"
+            model="ovitas.entree"
+            string="Entree de stock"
+            report_type="qweb-pdf"
+            name="ovitas.entree"
+            file="ovitas.entree"
+        />
+
+        <report 
+            id="sortie_id"
+            model="ovitas.sortie"
+            string="Reçu de caisse"
+            report_type="qweb-pdf"
+            name="ovitas.sortie"
+            file="ovitas.sortie"
+            paperformat="ovitas.sheet_a5"
+        />
+        <report 
+            id="sortie_id2"
+            model="ovitas.sortie"
+            string="Facture"
+            report_type="qweb-pdf"
+            name="ovitas.sortie2"
+            file="ovitas.sortie2"
+            
+        />
+
+        <report 
+            id="article_id"
+            model="ovitas.article"
+            string="Article"
+            report_type="qweb-pdf"
+            name="ovitas.article"
+            file="ovitas.article"
+        />
+
+        <!-- <report 
+            id="article_id"
+            model="ovitas.article"
+            string="Article"
+            report_type="qweb-pdf"
+            name="ovitas.article"
+            file="ovitas.article"
+        /> -->
+
+        <report 
+            id="stock_id2"
+            model="ovitas.etat"
+            string="Etat stock"
+            report_type="qweb-pdf"
+            name="ovitas.reportbilan_template"
+            file="ovitas.reportbilan_template"
+        />
+
+        <report 
+            id="bilanventedetails_id"
+            model="ovitas.sortie.details"
+            string="Bilan VTE. DETAILS"
+            report_type="qweb-pdf"
+            name="ovitas.bilanventedetails"
+            file="ovitas.bilanventedetails"
+        />
+
+        <report 
+            id="bilanventegrossiste_id"
+            model="ovitas.sortie.grossiste"
+            string="Bilan VTE. GOSSISTE"
+            report_type="qweb-pdf"
+            name="ovitas.bilanventegrossiste"
+            file="ovitas.bilanventegrossiste"
+        />
+
+        <report 
+            id="bilanventeannexe_id"
+            model="ovitas.sortie.annexe"
+            string="Bilan VTE. ANNEXES"
+            report_type="qweb-pdf"
+            name="ovitas.bilanventeannexe"
+            file="ovitas.bilanventeannexe"
+        />
+
+        <report 
+            id="bilanvente_id"
+            model="ovitas.sortie"
+            string="Bilan vente"
+            report_type="qweb-pdf"
+            name="ovitas.bilanvente"
+            file="ovitas.bilanvente"
+        />
+
+        <report 
+            id="bilanappro_id"
+            model="ovitas.entree"
+            string="Bilan appro"
+            report_type="qweb-pdf"
+            name="ovitas.bilanappro"
+            file="ovitas.bilanappro"
+        />
+
+        <!-- <report 
+            id="sortie_details_id"
+            model="ovitas.sortie.details"
+            string="Reçu de caisse"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_details"
+            file="ovitas.sortie_details"
+            paperformat="ovitas.sheet_a5"
+        /> -->
+
+        <report 
+            id="sortie_details_id1"
+            model="ovitas.sortie.details"
+            string="BL"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_details_bl"
+            file="ovitas.sortie_details_bl"
+            paperformat="ovitas.sheet_a5"
+        />
+
+        <report 
+            id="sortie_details_id2"
+            model="ovitas.sortie.details"
+            string="FACTTURE"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_details_facture"
+            file="ovitas.sortie_details_facture"
+            paperformat="ovitas.sheet_a5"
+        />
+
+        <!-- <report 
+            id="sortie_grossiste_id"
+            model="ovitas.sortie.grossiste"
+            string="Reçu de caisse"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_grossiste"
+            file="ovitas.sortie_grossiste"
+            paperformat="ovitas.sheet_a5"
+        /> -->
+
+        <report 
+            id="sortie_grossiste_id1"
+            model="ovitas.sortie.grossiste"
+            string="BL"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_grossiste_bl"
+            file="ovitas.sortie_grossiste_bl"
+            paperformat="ovitas.sheet_a5"
+        />
+
+        <report 
+            id="sortie_grossiste_id2"
+            model="ovitas.sortie.grossiste"
+            string="FACTURE"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_grossiste_facture"
+            file="ovitas.sortie_grossiste_facture"
+            paperformat="ovitas.sheet_a5"
+        />
+
+        <report 
+            id="sortie_grossiste2_id1"
+            model="ovitas.sortie.grossiste2"
+            string="BL"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_grossiste2_bl"
+            file="ovitas.sortie_grossiste2_bl"
+            paperformat="ovitas.sheet_a5"
+        />
+
+        <report 
+            id="sortie_grossiste2_id2"
+            model="ovitas.sortie.grossiste2"
+            string="FACTURE"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_grossiste2_facture"
+            file="ovitas.sortie_grossiste2_facture"
+            paperformat="ovitas.sheet_a5"
+        />
+
+        <report 
+            id="sortie_annexe_id"
+            model="ovitas.sortie.annexe"
+            string="FACTURE"
+            report_type="qweb-pdf"
+            name="ovitas.sortie_annexe"
+            file="ovitas.sortie_annexe"
+            paperformat="ovitas.sheet_a5"
+        />
+
+
+		
+    </data>
+</odoo>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/ovitas/static/src/css/ovitas.css"/>
+			<link rel='stylesheet' href="/ovitas/static/src/css/ovitas1.css"/>
+		</xpath>
+    </template>
+
+    <template id='stock'>
+        <t t-call="web.html_container">
+        <t t-set="data_report_margin_top" t-value="30"/>
+        <t t-set="data_report_header_spacing" t-value="9"/>
+        <t t-set="data_report_dpi" t-value="110"/>
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <div>
+                        <img src="/ovitas/static/src/img/entete_fact.png"  height="170px" width="100%"/>
+                    </div>
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                           <h3>ETAT DU <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/>: <strong>MOUVEMENTS DE STOCKS</strong></h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h6 class="mb-3">DU:</h6>
+                                  <div>
+                                        <strong><span t-esc="data['debut']"/></strong>
+                                    </div> 
+                                   
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="mb-3">AU:</h6>
+                                     <div>
+                                        <strong><span t-esc="data['fin']"/></strong>
+                                    </div> 
+                                   
+                                </div>
+                            </div>
+
+                            <div class="table-responsive-sm">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="9">MOUVEMENTS DE STOCK</th>
+                                        </tr>
+                                     </thead>
+                                    <tbody>
+                                      
+                                       <t- t-set="quantiterecue" t-value="0"/> 
+                                       <t- t-set="quantitesortie" t-value="0"/> 
+                                       <t- t-set="variation" t-value="0"/> 
+                                   
+                                      
+                                
+                                        <tr>
+                                            <td>DESIGNATION</td>
+                                            <td align="right">APPRO</td>
+                                            <td align="right">VTE-manuel</td>
+                                            <td align="right">Casser</td>
+                                            <td align="right">Gros.</td>
+                                            <td align="right">Gros. DTS</td>
+                                            <td align="right">ANNEXE</td>
+                                            <td align="right">VARIATION DE STOCK</td>
+                                            <td align="right">FOURNISSEUR/CLIENT</td>
+                                            
+                                           
+                                        </tr>
+                                     <t t-foreach="resultats" t-as="res"> 
+
+                                        <tr>
+                                            <td><span t-esc="res['name']"/></td> 
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['quantiterecue']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['qte_manuel_jour']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['qte_casser']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['qte_grossiste']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['qte_grossiste_details']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['qte_annexe']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"><span t-esc="'{:,.2f}'.format(res['variation']).replace(',', ' ').replace('.', ',')"/></td>
+                                            <td align="right"></td>
+  
+                                        </tr>
+
+        
+                                                
+                                    </t> 
+                                        <!-- <tr>
+                                            <td>TOTAL</td>
+                                            <td align="right"></td>
+                                            <td align="right"></td>
+                                            <td align="right"></td>
+                                            <td align="right"></td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </t>
+           
+        </t>
+    </template>
+
+</odoo>

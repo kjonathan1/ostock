@@ -2,10 +2,37 @@
 <odoo>
     <data>
         <!-- Menus  -->
-        <menuitem id="ostock" name="STOCK" sequence="150" web_icon="ostock,static/description/icon.png"/>
-            <menuitem id="entree" name="Entree" parent="ostock"  sequence="5" action="action_ostockentree"/>
-           
+        <menuitem id="ovitas" name="G-STOCK" sequence="150" web_icon="ovitas,static/description/icon.png"/>
+            <!-- <menuitem id="vente" name="VENTE" parent="ovitas"  sequence="5"/>
+                <menuitem id="entree1" name="Entree" parent="vente"  sequence="5" action="action_ovitasentree"/> -->
 
+            <!-- <menuitem id="stock" name="STOCK" parent="ovitas"  sequence="50"/> -->
+            <menuitem id="stocksortie1" name="VTE. DIMENSIONS" parent="ovitas"  sequence="5" action="action_ovitassortie"/>
+            <menuitem id="stocksortie2" name="VTE. VOLUME GROS." parent="ovitas"  sequence="6" action="action_ovitassortie2"/>
+            <menuitem id="stocksortie3" name="VTE. VOLUME DETS." parent="ovitas"  sequence="7" action="action_ovitassortievlme_details"/>
+            <menuitem id="stocksortie4" name="RVT. ANNEXES" parent="ovitas"  sequence="8" action="action_ovitassortie3"/>
+            <menuitem id="stockjour" name="VOLUME JOUR" parent="ovitas"  sequence="9" action="action_ovitasvolumejour"/>
+            <menuitem id="stockentree" name="APPRO" parent="ovitas"  sequence="10" action="action_ovitasentree"/>
+                <!-- <menuitem id="ovitas_report" name="Rapports" parent="stock"  sequence="15"/> -->
+            
+            <!-- <menuitem id="voiture" name="VOITURES" parent="ovitas"  sequence="150"/>
+                <menuitem id="entree2" name="Entree" parent="voiture"  sequence="5" action="action_ovitasentree"/> -->
+
+
+            <menuitem id="raport" name="RAPORTS" parent="ovitas"  sequence="200"/>
+                <!-- <menuitem id="mouvements" name="Mouvements" parent="raport"  sequence="11" action="action_ovitasmouvements"/> -->
+                <menuitem id="etat" name="Etat" parent="raport"  sequence="11" action="action_ovitas_etat"/>
+
+            <menuitem id="params" name="PARAMETRES" parent="ovitas"  sequence="250"/>
+              <menuitem id="categoriearticle" name="Categorie article" parent="params"  sequence="1" action="action_ovitascategoriearticle"/>
+			  <menuitem id="article1" name="Article" parent="params"  sequence="2" action="action_ovitasarticle"/>
+              <menuitem id="magasin" name="Magasin" parent="params"  sequence="3" action="action_ovitasmagasin"/>
+              <menuitem id="client" name="Client" parent="params"  sequence="4" action="action_ovitasclient"/>
+              <menuitem id="fournisseur" name="Fournisseur" parent="params"  sequence="5" action="action_ovitasfournisseur"/>
+              <menuitem id="technicien" name="Vendeur" parent="params"  sequence="6" action="action_ovitastechnicien"/>
+
+
+ 
      </data>
 
 </odoo>

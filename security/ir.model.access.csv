@@ -1,8 +1,51 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 
-ostockentree_admin,ostock.entree.admin,model_ostock_entree,group_ostock_admin,1,1,1,1
-ostockentree_gerant,ostock.entree.gerant,model_ostock_entree,group_ostock_gerant,1,1,1,0
+ovitasentree_admin,ovitas.entree.admin,model_ovitas_entree,group_ovitas_admin,1,1,1,1
+ovitasentree_gerant,ovitas.entree.gerant,model_ovitas_entree,group_ovitas_gerant,1,1,1,0
+
+ovitassortie_admin,ovitas.sortie.admin,model_ovitas_sortie,group_ovitas_admin,1,1,1,1
+ovitassortie_gerant,ovitas.sortie.gerant,model_ovitas_sortie,group_ovitas_gerant,1,1,1,0
+
+
+detailsentree_admin,ovitas.detailsentree.admin,model_ovitas_detailsentree,group_ovitas_admin,1,1,1,1
+detailsentree_gerant,ovitas.detailsentree.gerant,model_ovitas_detailsentree,group_ovitas_gerant,1,1,1,0
+
+detailsortie_admin,ovitas.detailsortie.admin,model_ovitas_detailsortie,group_ovitas_admin,1,1,1,1
+detailsortie_gerant,ovitas.detailsortie.gerant,model_ovitas_detailsortie,group_ovitas_gerant,1,1,1,0
+
+stock_etat_admin,ovitas.etat.admin,model_ovitas_etat,group_ovitas_admin,1,1,1,1
+stock_etat_gerant,ovitas.etat.gerant,model_ovitas_etat,group_ovitas_gerant,1,1,1,0
+
+stock_lignedemagasin_admin,ovitas.lignedemagasin.admin,model_ovitas_lignedemagasin,group_ovitas_admin,1,1,1,1
+stock_lignedemagasin_gerant,ovitas.lignedemagasin.gerant,model_ovitas_lignedemagasin,group_ovitas_gerant,1,1,1,0
+
+
+stock_unite_admin,ovitas.unite.admin,model_ovitas_unite,group_ovitas_admin,1,1,1,1
+stock_unite_gerant,ovitas.unite.gerant,model_ovitas_unite,group_ovitas_gerant,1,1,1,0
+
+stock_client_admin,ovitas.client.admin,model_ovitas_client,group_ovitas_admin,1,1,1,1
+stock_client_gerant,ovitas.client.gerant,model_ovitas_client,group_ovitas_gerant,1,1,1,0
+
+ovitassortiedetails_admin,ovitas.sortie.details.admin,model_ovitas_sortie_details,group_ovitas_admin,1,1,1,1
+ovitassortiedetails_gerant,ovitas.sortie.details.gerant,model_ovitas_sortie_details,group_ovitas_gerant,1,1,1,0
+
+ovitassortiegrossiste_admin,ovitas.sortie.grossiste.admin,model_ovitas_sortie_grossiste,group_ovitas_admin,1,1,1,1
+ovitassortiegrossiste_gerant,ovitas.sortie.grossiste.gerant,model_ovitas_sortie_grossiste,group_ovitas_gerant,1,1,1,0
+
+ovitassortieannexe_admin,ovitas.sortie.annexe.admin,model_ovitas_sortie_annexe,group_ovitas_admin,1,1,1,1
+ovitassortieannexe_gerant,ovitas.sortie.annexe.gerant,model_ovitas_sortie_annexe,group_ovitas_gerant,1,1,1,0
+
+
+
+detailsortieannexe_admin,ovitas.detailsortie.annexe.admin,model_ovitas_detailsortie_annexe,group_ovitas_admin,1,1,1,1
+detailsortieannexe_gerant,ovitas.detailsortie.annexe.gerant,model_ovitas_detailsortie_annexe,group_ovitas_gerant,1,1,1,0
+
+detailsortiegrossiste_admin,ovitas.detailsortie.grossiste.admin,model_ovitas_detailsortie_grossiste,group_ovitas_admin,1,1,1,1
+detailsortiegrossiste_gerant,ovitas.detailsortie.grossiste.gerant,model_ovitas_detailsortie_grossiste,group_ovitas_gerant,1,1,1,0
+
+detailsortiedetails_admin,ovitas.detailsortie.details.admin,model_ovitas_detailsortie_details,group_ovitas_admin,1,1,1,1
+detailsortiedetails_gerant,ovitas.detailsortie.details.gerant,model_ovitas_detailsortie_details,group_ovitas_gerant,1,1,1,0
 
 
 
@@ -11,5 +54,45 @@ ostockentree_gerant,ostock.entree.gerant,model_ostock_entree,group_ostock_gerant
 
 
 
-ostockarticle_admin,ostock.article.admin,model_ostock_article,group_ostock_admin,1,1,1,1
-ostockarticle_gerant,ostock.article.gerant,model_ostock_article,group_ostock_gerant,1,1,1,0
+
+ovitascategoriearticle_admin,ovitas.categoriearticle.admin,model_ovitas_categoriearticle,group_ovitas_admin,1,1,1,1
+ovitascategoriearticle_gerant,ovitas.categoriearticle.gerant,model_ovitas_categoriearticle,group_ovitas_gerant,1,1,1,0
+
+ovitasarticle_admin,ovitas.article.admin,model_ovitas_article,group_ovitas_admin,1,1,1,1
+ovitasarticle_gerant,ovitas.article.gerant,model_ovitas_article,group_ovitas_gerant,1,1,1,0
+
+ovitasmagasin_admin,ovitas.magasin.admin,model_ovitas_magasin,group_ovitas_admin,1,1,1,1
+ovitasmagasin_gerant,ovitas.magasin.gerant,model_ovitas_magasin,group_ovitas_gerant,1,1,1,0
+
+stocktechnicien_admin,ovitas.technicien.admin,model_ovitas_technicien,group_ovitas_admin,1,1,1,1
+ovitastechnicien_gerant,ovitas.technicien.gerant,model_ovitas_technicien,group_ovitas_gerant,1,1,1,0
+
+
+stockfournisseur_admin,ovitas.fournisseur.admin,model_ovitas_fournisseur,group_ovitas_admin,1,1,1,1
+ovitasfournisseur_gerant,ovitas.fournisseur.gerant,model_ovitas_fournisseur,group_ovitas_gerant,1,1,1,0
+
+
+ovitasmouvements_admin,ovitas.mouvements.admin,model_ovitas_mouvements,group_ovitas_admin,1,1,1,1
+ovitasmouvements_gerant,ovitas.mouvements.gerant,model_ovitas_mouvements,group_ovitas_gerant,1,1,1,0
+
+
+stock_chantier_admin,ovitas.chantier.admin,model_ovitas_chantier,group_ovitas_admin,1,1,1,1
+stock_chantier_gerant,ovitas.chantier.gerant,model_ovitas_chantier,group_ovitas_gerant,1,1,1,0
+
+stock_detailspaiement_admin,ovitas.detailspaiement.admin,model_ovitas_detailspaiement,group_ovitas_admin,1,1,1,1
+stock_detailspaiement_gerant,ovitas.detailspaiement.gerant,model_ovitas_detailspaiement,group_ovitas_gerant,1,1,1,0
+
+ovitasvolumejour_admin,ovitas.volumejour.admin,model_ovitas_volumejour,group_ovitas_admin,1,1,1,1
+ovitasvolumejour_gerant,ovitas.volumejour.gerant,model_ovitas_volumejour,group_ovitas_gerant,1,1,1,0
+
+ovitasvolumejour_details_admin,ovitas.volumejour.details.admin,model_ovitas_volumejour_details,group_ovitas_admin,1,1,1,1
+ovitasvolumejour_details_gerant,ovitas.volumejour.details.gerant,model_ovitas_volumejour_details,group_ovitas_gerant,1,1,1,0
+
+ovitassortiegrossiste2_admin,ovitas.sortie.grossiste2.admin,model_ovitas_sortie_grossiste2,group_ovitas_admin,1,1,1,1
+ovitassortiegrossiste2_gerant,ovitas.sortie.grossiste2.gerant,model_ovitas_sortie_grossiste2,group_ovitas_gerant,1,1,1,0
+
+detailsortiegrossiste2_admin,ovitas.detailsortie.grossiste2.admin,model_ovitas_detailsortie_grossiste2,group_ovitas_admin,1,1,1,1
+detailsortiegrossiste2_gerant,ovitas.detailsortie.grossiste2.gerant,model_ovitas_detailsortie_grossiste2,group_ovitas_gerant,1,1,1,0
+
+ovitasvolumecasserjour_admin,ovitas.volumecasserjour.admin,model_ovitas_volumecasserjour,group_ovitas_admin,1,1,1,1
+ovitasvolumecasserjour_gerant,ovitas.volumecasserjour.gerant,model_ovitas_volumecasserjour,group_ovitas_gerant,1,1,1,0

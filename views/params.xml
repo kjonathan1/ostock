@@ -1,6 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Categorie article -->
+    <record id="ovitascategoriearticle_view_form" model="ir.ui.view">
+        <field name="name">ovitas.categoriearticle.form</field>
+        <field name="model">ovitas.categoriearticle</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                       <field name="name"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="ovitascategoriearticle_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.categoriearticle.tree</field>
+            <field name="model">ovitas.categoriearticle</field>
+            <field name="arch" type="xml">
+                <tree string="Categorie article">
+                    <field name="name"/>     
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitascategoriearticle">
+        <field name="name">Categorie article</field>
+        <field name="res_model">ovitas.categoriearticle</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitascategoriearticle_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle categorie d'article</p>
+        </field>
+    </record>
+
+
+     <!-- Article -->
+    <record id="ovitasarticle_view_form" model="ir.ui.view">
+        <field name="name">ovitas.article.form</field>
+        <field name="model">ovitas.article</field>
+        <field name="arch" type="xml">
+            <form>
+               
+                    <group>
+                       <group>
+                        <field name="name"/>
+                        <field name="idcategoriearticle"/>
+                        <field name="idunite"/>
+                        <field name="description"/>
+                        <field name="prix"/>
+                        <field name="prix_grossiste"/>
+                        <field name="prix_grossiste_details"/>
+                        <field name="quantite"/>
+
+                       </group>
+                       <group>
+                       
+                       </group>
+                    </group>
+                
+            </form>
+        </field>
+    </record>
+    <record id="ovitasarticle_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.article.tree</field>
+            <field name="model">ovitas.article</field>
+            <field name="arch" type="xml">
+                <tree string="Article">
+                    <field name="name"/>
+                    <field name="idcategoriearticle"/>
+                    <field name="idunite"/>
+                    <field name="description"/>
+                    <field name="prix"/>
+                    <field name="prix_grossiste"/>
+                    <field name="prix_grossiste_details"/>
+                    <field name="quantite"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitasarticle">
+        <field name="name">Article</field>
+        <field name="res_model">ovitas.article</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitasarticle_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau article</p>
+        </field>
+    </record>
+
+
+     <!-- Magasin -->
+    <record id="ovitasmagasin_view_form" model="ir.ui.view">
+        <field name="name">ovitas.magasin.form</field>
+        <field name="model">ovitas.magasin</field>
+        <field name="arch" type="xml">
+            <form>
+               
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="adresse"/>
+                        </group>
+                    </group>
+                     <!-- <notebook>
+                      
+                    <page string="Details Magasin"> 
+                        <field name="lignedemagasin" readonly='1'>
+                            <tree>
+                                <field name="date" />
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <field name="idcategoriearticle" />
+                                <field name="motif" />
+                                <field name="quantiteentree" />
+                                <field name="quantitesortie" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook> -->
+                
+            </form>
+        </field>
+    </record>
    
+    <record id="ovitasmagasin_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.magasin.tree</field>
+            <field name="model">ovitas.magasin</field>
+            <field name="arch" type="xml">
+                <tree string="Magasin">
+                    <field name="name"/>
+                    <field name="adresse"/>
+                    
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitasmagasin">
+        <field name="name">Magasin</field>
+        <field name="res_model">ovitas.magasin</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitasmagasin_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau magasin</p>
+        </field>
+    </record>
+
+
+     <!-- Technicien -->
+    <record id="ovitastechnicien_view_form" model="ir.ui.view">
+        <field name="name">ovitas.technicien.form</field>
+        <field name="model">ovitas.technicien</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cnib"/>
+                            <field name="telephone"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+   
+    <record id="ovitastechnicien_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.technicien.tree</field>
+            <field name="model">ovitas.technicien</field>
+            <field name="arch" type="xml">
+                <tree string="Magasin">
+                    <field name="name"/>
+                    <field name="cnib"/>
+                    <field name="telephone"/>
+                    
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitastechnicien">
+        <field name="name">Tehniciens</field>
+        <field name="res_model">ovitas.technicien</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitastechnicien_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau technicien</p>
+        </field>
+    </record>
+
+    
+     <!-- Fournisseur -->
+    <record id="ovitasfournisseur_view_form" model="ir.ui.view">
+        <field name="name">ovitas.fournisseur.form</field>
+        <field name="model">ovitas.fournisseur</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cnib"/>
+                            <field name="telephone"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+   
+    <record id="ovitasfournisseur_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.fournisseur.tree</field>
+            <field name="model">ovitas.fournisseur</field>
+            <field name="arch" type="xml">
+                <tree string="Fournisseur">
+                    <field name="name"/>
+                    <field name="cnib"/>
+                    <field name="telephone"/>
+                    
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitasfournisseur">
+        <field name="name">Fournisseurs</field>
+        <field name="res_model">ovitas.fournisseur</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitasfournisseur_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau technicien</p>
+        </field>
+    </record>
+
+     <!-- client -->
+    <record id="ovitasclient_view_form" model="ir.ui.view">
+        <field name="name">ovitas.client.form</field>
+        <field name="model">ovitas.client</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="telephone"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+   
+    <record id="ovitasclient_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.client.tree</field>
+            <field name="model">ovitas.client</field>
+            <field name="arch" type="xml">
+                <tree string="Client">
+                    <field name="name"/>
+                    <field name="telephone"/>
+                    
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitasclient">
+        <field name="name">Client</field>
+        <field name="res_model">ovitas.client</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitasclient_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau client</p>
+        </field>
+    </record>
+
+     <!-- Mouvements -->
+    <record id="ovitasmouvements_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.mouvements.tree</field>
+            <field name="model">ovitas.mouvements</field>
+            <field name="arch" type="xml">
+                <tree string="Mouvements" edit="false" create="false" delete="false">
+                    <field name="date"/>
+                    <field name="quantiteentree"/>
+                    <field name="quantitesortie"/>
+                    <field name="motif"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitasmouvements">
+        <field name="name">Mouvements</field>
+        <field name="res_model">ovitas.mouvements</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitasmouvements_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau mouvement</p>
+        </field>
+    </record>
+
+
+
 
 </odoo>

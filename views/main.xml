@@ -1,45 +1,424 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Entree de stovk -->
-    <record id="ostockentree_view_form" model="ir.ui.view">
-        <field name="name">ostock.entree.form</field>
-        <field name="model">ostock.entree</field>
+    <record id="ovitasentree_view_form" model="ir.ui.view">
+        <field name="name">ovitas.entree.form</field>
+        <field name="model">ovitas.entree</field>
         <field name="arch" type="xml">
             <form>
-               <sheet>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <group>
                     <group>
                         <field name="name"/>
-                        
+                        <field name="date" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="idfournisseur" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
                     </group>
-                </sheet>
+                    <group>
+                        <field name="idmagasin" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="motif" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/> 
+                      
+                    </group>
+                </group>
+                <notebook>
+                        <!-- les entrées -->
+                    <page string="Details Entree"> 
+                        <field name="lignedetailsentree" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <field name="quantiterecue" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </form>
         </field>
     </record>
 
-    <record id="ostockentree_tree_view" model="ir.ui.view">
-            <field name="name">ostock.entree.tree</field>
-            <field name="model">ostock.entree</field>
+    <record id="ovitasentree_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.entree.tree</field>
+            <field name="model">ovitas.entree</field>
             <field name="arch" type="xml">
-                <tree string="Entree">
+                <tree string="APPROVISIONNEMENT">
                     <field name="name"/>
-                    
+                    <field name="date"/>
+                    <field name="idmagasin"/>
+                    <field name="idfournisseur"/>
+                    <field name="motif"/>
+                    <field name="state"/> 
                 </tree>
             </field>
     </record>
-    <record model="ir.actions.act_window" id="action_ostockentree">
-        <field name="name">Entree</field>
-        <field name="res_model">ostock.entree</field>
+    <record model="ir.actions.act_window" id="action_ovitasentree">
+        <field name="name">APPROVISIONNEMENT</field>
+        <field name="res_model">ovitas.entree</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="ostockentree_tree_view"/>
+        <field name="view_id" ref="ovitasentree_tree_view"/>
         <field name="help" type="html">
-            <p>Ajouter une nouvelle entree</p>
+            <p>Ajouter un nouvel approvisionnement</p>
         </field>
     </record>
 
-   
 
+     <!-- sortie de stock details -->
+     <record id="ovitassortiedetails_view_form" model="ir.ui.view">
+        <field name="name">ovitas.sortie.details.form</field>
+        <field name="model">ovitas.sortie.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="date" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="client" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="telephone" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="idmagasin" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <!-- <field name="motif" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/> -->
+                    </group>
+                    <group>
+                        
+                        <field name="montantnet" readonly="1"/>
+                       <field name="remise" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="montant" readonly="1" />
+                        <field name="montant_paye" readonly="1" />
+                        <field name="reste" readonly="1" />
+                    
+                    </group>
+                   
+                </group>
+                <notebook>
+                        <!-- les sorties -->
+                    <page string="Articles Vendus"> 
+                        <field name="lignedetailsortie" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <field name="longueur" />
+                                <field name="hauteur" />
+                                <field name="piece" />
+                                <field name="quantitesortie" />
+                                <field name="pu" />
+                                <field name="remise" />
+                                <field name="montant" />
+                            </tree>
+                        </field>
+                    </page>
+                   
+                </notebook>
+            </form>
+        </field>
+    </record>
 
+    <record id="ovitassortiedetails_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.sortie.details.tree</field>
+            <field name="model">ovitas.sortie.details</field>
+            <field name="arch" type="xml">
+                <tree string="VENTE">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="client"/>
+                    <!-- <field name="idtechnicien"/> -->
+                    <field name="montant" sum='montant'/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitassortie">
+        <field name="name">Vente en details</field>
+        <field name="res_model">ovitas.sortie.details</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitassortiedetails_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle vente en details</p>
+        </field>
+    </record>
 
-   
+    <!-- sortie de stock en gros -->
+    <record id="ovitassortiegrossiste_view_form" model="ir.ui.view">
+        <field name="name">ovitas.sortie.grossiste.form</field>
+        <field name="model">ovitas.sortie.grossiste</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="date" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="client" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="telephone" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="idmagasin" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <!-- <field name="motif" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/> -->
+                    </group>
+                    <group>
+                        <field name="montantnet" readonly="1"/>
+                       <field name="remise" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="montant" readonly="1" />
+                        <field name="montant_paye" readonly="1" />
+                        <field name="reste" readonly="1" />
+                    </group>
+                </group>
+                <notebook>
+                        <!-- les sorties -->
+                    <page string="Articles Vendus"> 
+                        <field name="lignedetailsortie" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <!-- <field name="piece" /> -->
+                                <field name="quantitesortie" />
+                                <field name="pu" />
+                                <field name="remise" />
+                                <field name="montant" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="ovitassortiegrossiste_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.sortie.grossiste.tree</field>
+            <field name="model">ovitas.sortie.grossiste</field>
+            <field name="arch" type="xml">
+                <tree string="VENTE">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="client"/>
+                    <field name="montant" sum='montant'/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitassortie2">
+        <field name="name">Vente volume en gros</field>
+        <field name="res_model">ovitas.sortie.grossiste</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitassortiegrossiste_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle vente en gros</p>
+        </field>
+    </record>
+
+     <!-- sortie de stock annexes -->
+    <record id="ovitassortieannexe_view_form" model="ir.ui.view">
+        <field name="name">ovitas.sortie.annexe.form</field>
+        <field name="model">ovitas.sortie.annexe</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="date" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="client" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="telephone" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="idmagasin" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <!-- <field name="motif" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/> -->
+                    </group>
+                    <group>
+                        
+                        <field name="montantnet" readonly="1"/>
+                       <field name="remise" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="montant" readonly="1" />
+                        <field name="montant_paye" readonly="1" />
+                        <field name="reste" readonly="1" />
+                    
+                    </group>
+                   
+                </group>
+                <notebook>
+                        <!-- les sorties -->
+                    <page string="Articles Vendus"> 
+                        <field name="lignedetailsortie" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <!-- <field name="piece" /> -->
+                                <field name="quantitesortie" />
+                                <field name="pu" />
+                                <field name="remise" />
+                                <field name="montant" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="ovitassortieannexe_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.sortie.annexe.tree</field>
+            <field name="model">ovitas.sortie.annexe</field>
+            <field name="arch" type="xml">
+                <tree string="VENTE">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="client"/>
+                    <field name="montant" sum='montant'/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitassortie3">
+        <field name="name">(Vente) Ravitaillement annexes</field>
+        <field name="res_model">ovitas.sortie.annexe</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitassortieannexe_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle vente annexe</p>
+        </field>
+    </record>
+
+    <!-- notation volume utiliser jour -->
+    <record id="ovitasvolumejour_view_form" model="ir.ui.view">
+        <field name="name">ovitas.volumejour.form</field>
+        <field name="model">ovitas.volumejour</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="idmagasin" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        
+                    </group>
+                </group>
+                <notebook>
+                        <!-- Volumes utilisés -->
+                    <page string="Volumes utilisés"> 
+                        <field name="lignedetails" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <field name="quantitesortie" />
+                            </tree>
+                        </field>
+                    </page>
+                     <!-- les vitre casser -->
+                    <page string="Articles cassés"> 
+                        <field name="lignedetailscasser" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <field name="quantitesortie" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="ovitasvolumejour_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.volumejour.tree</field>
+            <field name="model">ovitas.volumejour</field>
+            <field name="arch" type="xml">
+                <tree string="Volume jour">
+                    <field name="name"/>
+                    <field name="idmagasin"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitasvolumejour">
+        <field name="name">Volume jour</field>
+        <field name="res_model">ovitas.volumejour</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitasvolumejour_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter la quantité de volume utilise par jour ici</p>
+        </field>
+    </record>
+
+    <!-- sortie de stock en gros detaillées-->
+    <record id="ovitassortiegrossiste2_view_form" model="ir.ui.view">
+        <field name="name">ovitas.sortie.grossiste2.form</field>
+        <field name="model">ovitas.sortie.grossiste2</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="date" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="client" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="telephone" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="idmagasin" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <!-- <field name="motif" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/> -->
+                    </group>
+                    <group>
+                        <field name="montantnet" readonly="1"/>
+                       <field name="remise" attrs="{'readonly': [('state', '!=', 'brouillon')]}"/>
+                        <field name="montant" readonly="1" />
+                        <field name="montant_paye" readonly="1" />
+                        <field name="reste" readonly="1" />
+                    </group>
+                </group>
+                <notebook>
+                        <!-- les sorties -->
+                    <page string="Articles Vendus"> 
+                        <field name="lignedetailsortie" attrs="{'readonly': [('state', '!=', 'brouillon')]}">
+                            <tree editable="bottom">
+                                <field name="idarticle"  options="{'no_quick_create':True, 'no_create_edit':True, 'no_open':True,}"/>
+                                <!-- <field name="piece" /> -->
+                                <field name="quantitesortie" />
+                                <field name="pu" />
+                                <field name="remise" />
+                                <field name="montant" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="ovitassortiegrossiste2_tree_view" model="ir.ui.view">
+            <field name="name">ovitas.sortie.grossiste2.tree</field>
+            <field name="model">ovitas.sortie.grossiste2</field>
+            <field name="arch" type="xml">
+                <tree string="VENTE">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="client"/>
+                    <field name="montant" sum='montant'/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_ovitassortievlme_details">
+        <field name="name">Vente volume detaillées</field>
+        <field name="res_model">ovitas.sortie.grossiste2</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="ovitassortiegrossiste2_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle vente en gros detaillées</p>
+        </field>
+    </record>
 
 </odoo>
